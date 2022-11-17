@@ -1,0 +1,11 @@
+.container {
+    max-width: 530px;
+    padding: 50px 20px;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

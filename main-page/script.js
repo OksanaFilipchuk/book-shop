@@ -27,7 +27,7 @@
 	let confirmOrderButton = document.createElement("button");
 	let buttonLink = document.createElement("a");
 	buttonLink.className = "button-link";
-	buttonLink.setAttribute("href", "./form-page/index.html");
+	buttonLink.setAttribute("href", "../form-page/index.html");
 	buttonLink.appendChild(confirmOrderButton);
 	confirmOrderButton.className = "confirm-order-button";
 	confirmOrderButton.textContent = "Confirm order";
