@@ -12,6 +12,7 @@ body {
 
 .body-active-menu {
   overflow-y: hidden;
+  padding-right: 15px;
 }
 
 .container {
@@ -198,6 +199,9 @@ h1 {
   margin-left: 11px;
   width: 26px;
   height: auto;
+}
+.remove-book:hover {
+  cursor: pointer;
 }
 
 .message {
