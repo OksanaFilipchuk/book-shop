@@ -8,6 +8,7 @@
 
 body {
 	overflow-x: hidden;
+	background: #e5dbdb;
 }
 
 .body-active-menu {
@@ -18,7 +19,7 @@ body {
 .container {
 	max-width: 1160px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 20px 20px;
 }
 
 header {
@@ -134,7 +135,7 @@ h1 {
 }
 
 .catalog-header {
-	margin: 20px auto 20px;
+	margin: 0 auto;
 	font-size: 28px;
 	text-align: center;
 }
