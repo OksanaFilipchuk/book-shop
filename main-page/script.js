@@ -1,8 +1,60 @@
-	function showPageContent(){
-	let cart = [];
-	let cartSum = 0;
-	let root = document.querySelector(".root");
+let cart = [];
+let cartSum = 0;
 
+function showPageContent(data){
+
+	function showCart(){
+		if(cartMenuBackground.classList.contains("cart-menu-active")){
+			cartMenuBackground.classList.remove("cart-menu-active");
+			document.querySelector("body").classList.remove("body-active-menu");
+			cartWrapper.classList.remove("cart-wrapper-active");
+			confirmOrderButton.classList.remove("confirm-order-button-active")
+		} else {
+			cartMenuBackground.classList.add("cart-menu-active");
+			document.querySelector("body").classList.add("body-active-menu");		
+			cartWrapper.classList.add("cart-wrapper-active");
+			confirmOrderButton.classList.add("confirm-order-button-active")
+			cartMenuWrapper.innerHTML = null;
+			displayCartContent()
+		}
+	}
+
+	function displayCartContent(){
+		if(cart.length>0){
+			cart.forEach(el => {
+				const bookBlock = document.createElement("div");
+				bookBlock.classList = "cart-book-block";
+				bookBlock.innerHTML = `<img src = "${el.imageLink}" alt = "${el.title}" class = "cart-book-img">
+															<h4 class = "cart-book-title">${el.title}</h4>
+															<h5 class = "cart-book-author">${el.author}</h5>
+															<span class = "cart-book-price">${el.price}$</span>
+															<span class = "cart-book-number">${el.number}</span>
+															<span class = "cart-book-sum">${el.number*el.price}$</span>`;
+				let removeBook = document.createElement("img");
+				removeBook.setAttribute("src", "./images/trash.svg");
+				removeBook.setAttribute("alt", "remove");
+				removeBook.classList.add("remove-book")
+				removeBook.addEventListener("click", ()=>{
+					cart.splice(cart.indexOf(el),1);
+					cartMenuWrapper.innerHTML= null;
+					displayCartContent();
+					updateCartSum();
+				})
+				bookBlock.appendChild(removeBook)
+				cartMenuWrapper.appendChild(bookBlock)	
+			})
+			confirmOrderButton.disabled= false;
+		} else {
+			let message = document.createElement("p");
+			message.textContent = "Your cart is empty(";
+			message.classList = "message"
+			cartMenuWrapper.appendChild(message);
+			confirmOrderButton.disabled = true;
+		}	
+
+	}
+	
+	let root = document.querySelector(".root");
 	let headerFragment = document.createDocumentFragment();
 	let header = document.createElement("header");
 	let headerContainer = document.createElement("div");
@@ -16,13 +68,30 @@
 																<p class = "author">Mahatma Gandhi</p>
 															</div>`;
 	let cartWrapper = document.createElement("div");
-	cartWrapper.innerHTML = `<img src="./images/shopping-bag.svg" class = "shopping-bag"></img>`;
+	let shoppingBag = document.createElement("img");
+	shoppingBag.className = "shopping-bag";
+	shoppingBag.setAttribute("src", "./images/shopping-bag.svg");
+	shoppingBag.setAttribute("alt", "cart");
+	shoppingBag.addEventListener("click", showCart);
+	cartWrapper.appendChild(shoppingBag);
+	cartWrapper.addEventListener("dragover", (event)=> event.preventDefault())
+	cartWrapper.addEventListener("drop", (event)=> {
+		let el = event.dataTransfer.getData("elData");
+		if(cart.includes(data[el])){
+			cart[cart.indexOf(data[el])].number = cart[cart.indexOf(data[el])].number + 1;				
+		}else {
+			data[el].number = 1;
+			cart.push(data[el]);
+		}
+		updateCartSum()
+	})
+
 	let shoppingBagCounter = document.createElement("div");
 	shoppingBagCounter.className = "shopping-bag-counter";
 	shoppingBagCounter.textContent= "0$";
 	cartWrapper.appendChild(shoppingBagCounter);
 	cartWrapper.className = "cart-wrapper"
-	cartWrapper.addEventListener("click", showCart);
+	
 	headerContainer.appendChild(cartWrapper);
 	let confirmOrderButton = document.createElement("button");
 	let buttonLink = document.createElement("a");
@@ -86,146 +155,94 @@
 	root.appendChild(headerFragment);
 	root.appendChild(mainFragment);
 	root.appendChild(footerFragment);
+	showBooks(data, catalog);
+}
 
-	function displayCartContent(){
-		if(cart.length>0){
-			cart.forEach(el => {
-				const bookBlock = document.createElement("div");
-				bookBlock.classList = "cart-book-block";
-				bookBlock.innerHTML = `<img src = "${el.imageLink}" alt = "${el.title}" class = "cart-book-img">
-															<h4 class = "cart-book-title">${el.title}</h4>
-															<h5 class = "cart-book-author">${el.author}</h5>
-															<span class = "cart-book-price">${el.price}$</span>
-															<span class = "cart-book-number">${el.number}</span>
-															<span class = "cart-book-sum">${el.number*el.price}$</span>`;
-				let removeBook = document.createElement("img");
-				removeBook.setAttribute("src", "./images/trash.svg");
-				removeBook.setAttribute("alt", "remove");
-				removeBook.classList.add("remove-book")
-				removeBook.addEventListener("click", ()=>{
-					cart.splice(cart.indexOf(el),1);
-					cartMenuWrapper.innerHTML= null;
-					displayCartContent();
-					updateCartSum();
-				})
-				bookBlock.appendChild(removeBook)
-				cartMenuWrapper.appendChild(bookBlock)	
-			})
-			confirmOrderButton.disabled= false;
-		} else {
-			let message = document.createElement("p");
-			message.textContent = "Your cart is empty(";
-			message.classList = "message"
-			cartMenuWrapper.appendChild(message);
-			confirmOrderButton.disabled = true;
-		}	
-
+function updateCartSum(){
+	if(cart.length === 0){
+		cartSum = 0;
+	} else if(cart.length===1){
+		cartSum = cart[0].price *cart[0].number;
+	}else {
+		cartSum = cart.reduce((accum,current)=>	accum + current.price * current.number,
+		0)
 	}
+	document.querySelector(".shopping-bag-counter").textContent = cartSum +" $";
+}
 
-	function showCart(){
-		if(cartMenuBackground.classList.contains("cart-menu-active")){
-			cartMenuBackground.classList.remove("cart-menu-active");
-			document.querySelector("body").classList.remove("body-active-menu");
-			cartWrapper.classList.remove("cart-wrapper-active");
-			confirmOrderButton.classList.remove("confirm-order-button-active")
-		} else {
-			cartMenuBackground.classList.add("cart-menu-active");
-			document.querySelector("body").classList.add("body-active-menu");		
-			cartWrapper.classList.add("cart-wrapper-active");
-			confirmOrderButton.classList.add("confirm-order-button-active")
-			cartMenuWrapper.innerHTML = null;
-			displayCartContent()
+function showBooks(data){
+	data.forEach((el, index)=>{
+
+		function showPopUp(){
+			popUpBackground.classList.add("pop-up-background-active");
+			document.querySelector("body").classList.add("body-active-menu");
 		}
-	}
 
-	function updateCartSum(){
-		if(cart.length === 0){
-			cartSum = 0;
-		} else if(cart.length===1){
-			cartSum = cart[0].price *cart[0].number;
-		}else {
-			cartSum = cart.reduce((accum,current)=>	accum + current.price * current.number,
-			0)
+		function closePopUp (){
+			popUpBackground.classList.remove("pop-up-background-active");
+			document.querySelector("body").classList.remove("body-active-menu");	
 		}
-		shoppingBagCounter.textContent = cartSum +" $";
-	}
 
-	function showBooks(data){
-		data.forEach((el, index)=>{
+		const bookBlock = document.createElement("div");
+		bookBlock.classList = "book-block";
+		bookBlock.innerHTML = `<img src = "${el.imageLink}" alt = "${el.title}" class = "book-img">
+													<h4 class = "book-title">${el.title}</h4>
+													<h5 class = "book-author">${el.author}</h5>
+													`;
+		let readMore = document.createElement("span");
+		readMore.className = "read-more";
+		readMore.textContent = "Read more";
+		bookBlock.appendChild(readMore);			
+		let popUpBackground = document.createElement("div");
+		popUpBackground.className = "pop-up-background";
+		let popUpBlock = document.createElement("div");
+		popUpBlock.className = "pop-up-block";
+		popUpBlock.textContent = el.description;
+		let closePopUpButton = document.createElement("p");
+		closePopUpButton .className = "close-pop-up";
+		closePopUpButton .textContent = "x";
+		closePopUpButton .addEventListener("click", closePopUp)
+		popUpBackground.appendChild(popUpBlock);
+		popUpBlock.appendChild(closePopUpButton );
+		bookBlock.appendChild(popUpBackground);
+		readMore.addEventListener("click", showPopUp);
 
-			function showPopUp(){
-				popUpBackground.classList.add("pop-up-background-active");
-				document.querySelector("body").classList.add("body-active-menu");
+		bookBlock.setAttribute("id", `book-block${index}`);
+		bookBlock.setAttribute("draggable", "true");
+		bookBlock.addEventListener("dragstart", (ev)=> {
 
-			}
-			function closePopUp (){
-				popUpBackground.classList.remove("pop-up-background-active");
-				document.querySelector("body").classList.remove("body-active-menu");	
-			}
-
-			const bookBlock = document.createElement("div");
-			bookBlock.classList = "book-block";
-			bookBlock.innerHTML = `<img src = "${el.imageLink}" alt = "${el.title}" class = "book-img">
-														<h4 class = "book-title">${el.title}</h4>
-														<h5 class = "book-author">${el.author}</h5>
-														`;
-			let readMore = document.createElement("span");
-			readMore.className = "read-more";
-			readMore.textContent = "Read more";
-			bookBlock.appendChild(readMore);			
-			let popUpBackground = document.createElement("div");
-			popUpBackground.className = "pop-up-background";
-			let popUpBlock = document.createElement("div");
-			popUpBlock.className = "pop-up-block";
-			popUpBlock.textContent = el.description;
-			let closePopUpButton = document.createElement("p");
-			closePopUpButton .className = "close-pop-up";
-			closePopUpButton .textContent = "x";
-			closePopUpButton .addEventListener("click", closePopUp)
-			popUpBackground.appendChild(popUpBlock);
-			popUpBlock.appendChild(closePopUpButton );
-			bookBlock.appendChild(popUpBackground);
-			readMore.addEventListener("click", showPopUp);
-
-			let bookPrice = document.createElement("span");
-			bookPrice.className = "book-price";
-			bookPrice.textContent = el.price+"$";
-			bookBlock.appendChild(bookPrice);
-			let buyButton = document.createElement("button");
-			buyButton.className = "buy-button";
-			buyButton.textContent = "Buy book";
-			bookBlock.appendChild(buyButton);
-			buyButton.addEventListener("click", ()=>{
-				if(cart.includes(data[index])){
-					cart[cart.indexOf(data[index])].number = cart[cart.indexOf(data[index])].number + 1;				
-				}else {
-					data[index].number = 1;
-					cart.push(data[index]);
-				}
-				updateCartSum()
-			})													 
-			catalog.appendChild(bookBlock);	
+			ev.dataTransfer.setData("elData", index)
 		})
 
-	}
+		let bookPrice = document.createElement("span");
+		bookPrice.className = "book-price";
+		bookPrice.textContent = el.price+"$";
+		bookBlock.appendChild(bookPrice);
+		let buyButton = document.createElement("button");
+		buyButton.className = "buy-button";
+		buyButton.textContent = "Buy book";
+		bookBlock.appendChild(buyButton);
+		buyButton.addEventListener("click", ()=>{
 
-	fetch('books.json')
-		.then(response => {
-			return response.json();
+			if(cart.includes(el)){
+				cart[cart.indexOf(el)].number = cart[cart.indexOf(el)].number + 1;				
+			}else {
+				el.number = 1;
+				cart.push(el);
+			}
+			updateCartSum()
 		})
-		.then(data => {
-			showBooks(data);
-		});
+
+		document.querySelector(".catalog").appendChild(bookBlock);	
+	})
 
 }
 
-showPageContent();
-let readMore = Array.from(document.getElementsByClassName("read-more"));
-console.log(readMore)
-readMore.forEach(el => el.addEventListener("click", ()=>console.log("lll")))
-// for(let el of readMore){
-// 		el.addEventListener("click", (event)=>{
-// 			event.preventDefault();
-// 			console.log("KKK")
-// 		})
-// 	}
+fetch('books.json')
+.then(response => {
+	return response.json();
+})
+.then(data => {
+	showPageContent(data);
+})
+
