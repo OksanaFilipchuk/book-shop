@@ -87,3 +87,24 @@ giftInputs.forEach(el => el.addEventListener("change", ()=>{
 	}
 }))
 
+document.querySelector(".form").addEventListener("submit", (e)=>{
+	e.preventDefault();
+	let customerInformation = document.querySelector(".customer-info");
+	let wrapper = document.createElement("div");
+	wrapper.className = "wrapper";
+	wrapper.innerHTML = "<p class = 'customer-info-header'>Summarized information</p>";
+	fields.forEach( el =>{
+		let p = document.createElement("p");
+		p.textContent = el.id.slice(1) +": ";
+		let span = document.createElement("span");
+		span.className = "span";
+		span.textContent = document.querySelector(el.id).value;
+		p.appendChild(span)
+		p.className = "customer-info-item";
+		wrapper.appendChild(p)
+	})	
+	customerInformation.appendChild(wrapper)
+	customerInformation.classList.add("customer-info-active");
+	document.querySelector("body").classList.add("body-hidden")
+})
+
