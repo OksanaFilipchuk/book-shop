@@ -1,6 +1,11 @@
 body {
     background-color: #dbd6be;
 }
+
+.body-hidden {
+    overflow: hidden;
+}
+
 .container {
     max-width: 530px;
     padding: 30px 60px;
@@ -82,4 +87,44 @@ input {
 	gap: 9px;
     margin-top: 15px;
 }
+.customer-info {
+    display: none;
 
+    &-active {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vw;
+        background-image: linear-gradient(to bottom, rgba(71, 44, 71, 0.8), rgba(34, 33, 34, 0.8)), url(../form-page/books.jpg);
+        background-size: cover, cover;
+        background-repeat: no-repeat, no-repeat;
+        z-index: 10;
+    }
+
+    &-header {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    &-item {
+        color: #dbd6be;
+        font-size: 26px;
+        text-transform: capitalize;
+        font-style: italic;
+    }
+}
+
+.wrapper {
+    max-width: 560px;
+    max-height: 420px;
+    margin: 100px auto;
+    border-radius: 20px;
+    padding: 50px;
+    background-color: rgb(162, 161, 163, 0.7);
+}
+
+.span {
+    font-style: normal;
+}
