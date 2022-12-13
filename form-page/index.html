@@ -1,50 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <form action="" class = "form">
-      <legend class = "form-header">Fill out the form</legend>
-      <label for="name">Name</label>
-      <input type="text" name = "name" id="name" required>
-      <div class="message"></div>
-      <label for="surname">Surname</label>
-      <input type="text" name = "surname" id="surname" required>
-      <div class="message"></div>
-      <label for="deliveryDate">Delivery date</label>
-      <input type="date" name = "deliveryDate" id="delivery-date" required>
-      <div class="message"></div>
-      <label for="street">Street</label>
-      <input type="text" name = "street" id="street" required>
-      <div class="message"></div>
-      <label for="houseNumber">House number</label>
-      <input type="number" name = "houseNumber" id="house-number" required>
-      <div class="message"></div>
-      <label for="flatNumber">Flat number</label>
-      <input type="text" name = "flatNumber" id="flat-number" required>
-      <div class="message"></div>
-      <fieldset>
-        <legend>Choose the payment type</legend>
-        <label for="cash">Cash<input type="radio" name = "payment" id="cash" checked></label>      
-        <label for="card">Card<input type="radio" name = "payment" id="card"></label>
-      </fieldset>
-      <fieldset class="gifts">
-        <legend>Choose 2 gifts:</legend>
-        <label for="pack"><input type="checkbox" name="gift" value="pack" id="pack">pack as a gift</label>      
-        <label for="postcard"><input type="checkbox" name="gift" value="postcard" id="postcard">add postcard</label>      
-        <label for="discount"><input type="checkbox" name="gift" value="discount" id="discount">provide 2% discount to the next time</label>      
-        <label for="pen"><input type="checkbox" name="gift" value="pen" id="pen">branded pen or pencil</label>
-      </fieldset>      
-      <input type="submit" value="Complete order" disabled>      
-    </form>
-    <div class="customer-info"></div>
-  </div>
-  <script src="script.js"></script>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="" class="form">
+        <legend class="form-header">Fill out the form</legend>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+        <div class="message"></div>
+        <label for="surname">Surname</label>
+        <input type="text" name="surname" id="surname" required />
+        <div class="message"></div>
+        <label for="deliveryDate">Delivery date</label>
+        <input type="date" name="deliveryDate" id="delivery-date" required />
+        <div class="message"></div>
+        <label for="street">Street</label>
+        <input type="text" name="street" id="street" required />
+        <div class="message"></div>
+        <label for="houseNumber">House number</label>
+        <input type="number" name="houseNumber" id="house-number" required />
+        <div class="message"></div>
+        <label for="flatNumber">Flat number</label>
+        <input type="text" name="flatNumber" id="flat-number" required />
+        <div class="message"></div>
+        <fieldset>
+          <legend>Choose the payment type</legend>
+          <label for="cash"
+            >Cash<input type="radio" name="payment" id="cash" checked
+          /></label>
+          <label for="card"
+            >Card<input type="radio" name="payment" id="card"
+          /></label>
+        </fieldset>
+        <fieldset class="gifts">
+          <legend>Choose 2 gifts:</legend>
+          <label for="pack"
+            ><input type="checkbox" name="gift" value="pack" id="pack" />pack as
+            a gift</label
+          >
+          <label for="postcard"
+            ><input
+              type="checkbox"
+              name="gift"
+              value="postcard"
+              id="postcard"
+            />add postcard</label
+          >
+          <label for="discount"
+            ><input
+              type="checkbox"
+              name="gift"
+              value="discount"
+              id="discount"
+            />provide 2% discount to the next time</label
+          >
+          <label for="pen"
+            ><input type="checkbox" name="gift" value="pen" id="pen" />branded
+            pen or pencil</label
+          >
+        </fieldset>
+        <input type="submit" value="Complete order" disabled />
+      </form>
+      <div class="customer-info"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>

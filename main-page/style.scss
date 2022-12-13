@@ -1,344 +1,336 @@
 * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Poppins', sans-serif;
-	list-style: none;
-	text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
 body {
-	overflow-x: hidden;
-	background: #e5dbdb;
+  overflow-x: hidden;
+  background: #e5dbdb;
 }
 
 .body-active-menu {
-	overflow-y: hidden;
-	padding-right: 15px;
+  overflow-y: hidden;
+  padding-right: 15px;
 }
 
 .container {
-	max-width: 1160px;
-	margin: 0 auto;
-	padding: 20px 20px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px 20px;
 }
 
 header {
-	min-height: 200px;
-	padding: 25px;
-	background: linear-gradient( rgb(32, 30, 30, 0.85), rgb(32, 30, 30, 0.55)), url(./images/shelf.jpg);
-	background-repeat: no-repeat, no-repeat;
-	background-position: center, center;
-	background-size: cover, cover;
+  min-height: 200px;
+  padding: 25px;
+  background: linear-gradient(rgb(32, 30, 30, 0.85), rgb(32, 30, 30, 0.55)),
+    url(./images/shelf.jpg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: cover, cover;
 }
 
 .header-container {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 h1 {
-	color: #ffffff;
-	font-size: 36px;
-	margin-bottom: 30px;
+  color: #ffffff;
+  font-size: 36px;
+  margin-bottom: 30px;
 }
 
 .author,
 .quot {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 .quot {
-	font-style: italic;
+  font-style: italic;
 }
 
-.cart-wrapper{
-	transition: 300ms ease-in-out;
+.cart-wrapper {
+  transition: 300ms ease-in-out;
 
-	&-active {
-		display: flex;
-		align-items: center;
-		flex-direction: row-reverse;
-		position: absolute;
-		gap: 33px;
-		font-size: 24px;
-		font-weight: 600;
-		background-color: #ebddc6;
-		z-index: 10;
-		width: 520px;
-		top: 0;
-		padding-top: 10px;
-		right: 20px;
-	}
+  &-active {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: absolute;
+    gap: 33px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #ebddc6;
+    z-index: 10;
+    width: 520px;
+    top: 0;
+    padding-top: 10px;
+    right: 20px;
+  }
 
-	&:hover {
-		cursor: pointer;
-	}
-
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .button-link {
-	z-index: 10;
-	transition: 500ms ease-in-out;
+  z-index: 10;
+  transition: 500ms ease-in-out;
 }
 
 .confirm-order-button {
-	display: none;
+  display: none;
 
-	&-active {
-		display: block;
-		z-index: 10;
-		color: black;
-		padding: 3px 12px;
+  &-active {
+    display: block;
+    z-index: 10;
+    color: black;
+    padding: 3px 12px;
     font-size: 13px;
     border: none;
     border-radius: 3px;
     background: rgb(187, 117, 187);
-		transition: 200ms ease-in-out;
+    transition: 200ms ease-in-out;
 
-		&:hover {
-			background: rgb(236, 178, 236);
-		}
+    &:hover {
+      background: rgb(236, 178, 236);
+    }
 
-		&[disabled] {
-			background-color: #f6f0f0;
-			color:grey;		
-		}
-	}
-	
-	
+    &[disabled] {
+      background-color: #f6f0f0;
+      color: grey;
+    }
+  }
 }
 .cart-menu {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		// background-color: rgb(75, 74, 74, 0.5);
-		top: 0;
-		right: -100%;
-		transition: all 300ms ease-in-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  // background-color: rgb(75, 74, 74, 0.5);
+  top: 0;
+  right: -100%;
+  transition: all 300ms ease-in-out;
 
-		&-active {
-			right: 0;
-		}
+  &-active {
+    right: 0;
+  }
 
-	&-wrapper {
-		background-color: #ebddc6;;
-		padding: 100px 20px 40px;
-		width: 500px;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-		position: absolute;
-		right: 0;
-		overflow-y: scroll;
-	}
+  &-wrapper {
+    background-color: #ebddc6;
+    padding: 100px 20px 40px;
+    width: 500px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    right: 0;
+    overflow-y: scroll;
+  }
 }
 
 .catalog-header {
-	margin: 0 auto;
-	font-size: 28px;
-	text-align: center;
+  margin: 0 auto;
+  font-size: 28px;
+  text-align: center;
 }
 
 .book {
+  &-block {
+    width: 200px;
+    height: 450px;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    &:hover .book-img {
+      transform: scale(1.1);
+    }
+  }
 
-	&-block {
-		width: 200px;
-		height: 450px;
-		transition: 300ms ease-in-out;
-		overflow: hidden;
-		&:hover .book-img {
-			transform: scale(1.1);
-		}
+  &-img {
+    height: 250px;
+    width: 100%;
+    transition: all 200ms ease-in-out;
+  }
 
-	}
+  &-title {
+    font-size: 14px;
+    height: 45px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 
-	&-img {
-		height: 250px;
-		width: 100%;
-		transition: all 200ms ease-in-out;
-	}
-
-	&-title {
-		font-size: 14px;
-		height: 45px;
-		overflow: hidden;
-		margin-bottom: 10px;
-		margin-top: 10px;
-	}
-
-	&-author {
-		font-size: 14px;
-		color: #555454;
-		font-weight: 300;
-		height: 35px;
-	}
+  &-author {
+    font-size: 14px;
+    color: #555454;
+    font-weight: 300;
+    height: 35px;
+  }
 }
 
 .cart-book {
-	
-	&-block {
-		display: flex;
-		align-items: center;
-		gap: 15px;
-		width: 260px;
-		transition: 300ms ease-in-out;
-	}
+  &-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 260px;
+    transition: 300ms ease-in-out;
+  }
 
-	&-img {
-		width: 25%;
-		height: auto;
-		transition: all 200ms ease-in-out;
-	}
+  &-img {
+    width: 25%;
+    height: auto;
+    transition: all 200ms ease-in-out;
+  }
 
-	&-title {
-		width: 33%;
-		font-size: 10px;
-		margin-bottom: 10px;
-		margin-top: 10px;
-		flex: none;
-	}
+  &-title {
+    width: 33%;
+    font-size: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    flex: none;
+  }
 
-	&-author {
-		width: 33%;
-		font-size: 8px;
-		color: #555454;
-		font-weight: 300;
-		flex: none;
-	}
+  &-author {
+    width: 33%;
+    font-size: 8px;
+    color: #555454;
+    font-weight: 300;
+    flex: none;
+  }
 
-	&-price, &-number, &-sum {
-		font-size: 12px;
-		width: 10%;
-		flex: none;
-		text-align: center;
-	}
+  &-price,
+  &-number,
+  &-sum {
+    font-size: 12px;
+    width: 10%;
+    flex: none;
+    text-align: center;
+  }
 
-	&-sum {
-		font-weight: 600;
-		margin-left: 10px;
-	}
-
+  &-sum {
+    font-weight: 600;
+    margin-left: 10px;
+  }
 }
 
-.remove-book{
-	margin-top: -6px;
-	margin-left: 11px;
-	width: 26px;
-	height: auto;
-	&:hover {
-		cursor: pointer;
-	}
+.remove-book {
+  margin-top: -6px;
+  margin-left: 11px;
+  width: 26px;
+  height: auto;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .message {
-	width: 180px;
-	margin: 30% auto;
+  width: 180px;
+  margin: 30% auto;
 }
 
 .read-more {
-	display: block;
-	color: #555454;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-style: italic;
-	font-size: 14px;
-	transition: 200ms ease-in-out;	
+  display: block;
+  color: #555454;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-style: italic;
+  font-size: 14px;
+  transition: 200ms ease-in-out;
 
-	&:hover {
-		color: rgb(187, 103, 187);
-		cursor: pointer;		
-	}
-
+  &:hover {
+    color: rgb(187, 103, 187);
+    cursor: pointer;
+  }
 }
 
 .book-price {
-	color:blue;
-	font-weight: 600;
+  color: blue;
+  font-weight: 600;
 }
 
 .buy-button {
-	margin-left: 70px;
-	padding: 2px 14px;
-	background-color: rgb(187, 117, 187);
-	border: 1px solid rgb(187, 117, 187);
-	border-radius: 5px;
-	transition: 200ms ease-in-out;
-	box-shadow: #555454 2px 2px 5px;
+  margin-left: 70px;
+  padding: 2px 14px;
+  background-color: rgb(187, 117, 187);
+  border: 1px solid rgb(187, 117, 187);
+  border-radius: 5px;
+  transition: 200ms ease-in-out;
+  box-shadow: #555454 2px 2px 5px;
 
-	&:hover {
-		background-color: rgb(236, 178, 236);
-		cursor: pointer;
-	}
-
+  &:hover {
+    background-color: rgb(236, 178, 236);
+    cursor: pointer;
+  }
 }
 
 .catalog {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 
 .shopping-bag {
-	width: 70px;
-	color: #555454;
-	text-align: right;
-	position: relative;
-	z-index: 10;
+  width: 70px;
+  color: #555454;
+  text-align: right;
+  position: relative;
+  z-index: 10;
 
-	&-counter {
-		color: #fbf9fb;
-		text-align: center;
-		position: relative;
-		z-index: 10;
-	}
-
+  &-counter {
+    color: #fbf9fb;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
 }
 
 footer {
-	min-height: 100px;
-	padding: 25px;
-	background: linear-gradient( rgb(32, 30, 30, 0.85), rgb(32, 30, 30, 0.55)), url(./images/shelf.jpg);
-	background-repeat: no-repeat, no-repeat;
-	background-position: center, center;
-	background-size: cover, cover;
+  min-height: 100px;
+  padding: 25px;
+  background: linear-gradient(rgb(32, 30, 30, 0.85), rgb(32, 30, 30, 0.55)),
+    url(./images/shelf.jpg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: cover, cover;
 }
 
 .footer-container {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .social-media {
-	display: flex;
-	gap: 30px;
-	flex-direction: column;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
 }
 
 .nav-list {
-	display: flex;
-	gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .social-media-link,
 .nav-list-item-link {
-	color: #ffffff;
-	text-decoration: none;
-	font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
 
-	&:hover {
-		color: rgb(187, 103, 187);
-	}
-	
+  &:hover {
+    color: rgb(187, 103, 187);
+  }
 }
 
-.pop-up{
-
-	&-background {
-	display: none;
+.pop-up {
+  &-background {
+    display: none;
 
     &-active {
       display: flex;
@@ -358,20 +350,19 @@ footer {
   &-block {
     position: relative;
     width: 50%;
-    height: 30%;    
+    height: 30%;
     background-color: #ebddc6;
     border-radius: 10px;
     color: #000000;
     padding: 30px;
     overflow: overlay;
-
   }
 }
 
 .close-pop-up {
   position: absolute;
-	font-size: 36px;
-	color: #000000;
+  font-size: 36px;
+  color: #000000;
   top: -4px;
   right: 15px;
   cursor: pointer;
